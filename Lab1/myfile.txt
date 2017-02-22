@@ -1,6 +1,4 @@
 Welcome!
-<<<<<<< HEAD
 How are you?!
-=======
 Have a nice day!
->>>>>>> branch 2
+
