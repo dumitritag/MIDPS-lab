@@ -1,0 +1,43 @@
+
+\section*{Concluzie}
+
+Un sistem de control al versiunilor reprezinta un produs software ce ajuta dezvoltatorii dintr-o echipa software sa colaboreze in cadrul diferitelor proiecte si de asemenea pastreaza un jurnal complet al muncii fiecaruia. 
+Un sistem de control al versiunilor ( SCV ) are trei scopuri principale : 
+
+1. Sa ofere posibilitatea muncii simultane, nu seriale   
+
+2. Atunci cand mai multe persoane lucreaza in acelasi timp se asigura ca modificarile realizate de acestia nu intra in conflict unele cu altele 
+
+3. Sa ofere o arhiva a fiecarei versiuni continand informatii despre cine, unde si din ce motiv a fost facuta fiecare modificare.  
+
+Sunt 2 forme de organizarea a sistemelor de control al versiunilor: centralizata si distribuita.
+
+Principiul de baza al sistemelor centralizate se bazeaza pe relatia client-server. Un depozit (repository) este situat intr-un singur loc iar mai multi clienti au acces la el. Toate modificarile utilizatorilor si toate informatiile legate de aceste modificari (utilizator, data, revizie) sunt transmise si preluate de la un depozit (repository) central.
+
+
+Sistemele de control al versiunilor distribuite sunt o optiune mai noua. In cadrul acestora fiecare utilizator are propria copie a intregului repository, nu doar fisiere, ci intregul jurnal. Aceasta abordare foloseste modelul peer-to-peer spre deosebire de modelul client-server folosit de sistemele centralizate. In acest caz sincronizarea dintre repository-uri este realizata prin schimbul de changeset-uri sau patch-uri dintre statii. Doua dintre cele mai folosite SCV-uri de acest fel sunt Git si Mercurial. 
+
+Principalele beneficii ale sistemelor Git sunt : 
+
+- O urmarire a schimbarilor mai avansata si mai detaliata, lucru care duce la mai putine conflicte
+
+- Lipsa necesitatii unui server-toate operatiile cu exceptia schimbului de informatii intre repository-uri se realizeaza local 
+
+- Operatiile de branching si merging sunt mai sigure, si prin urmare folosite mai des 
+
+- Rapiditate mai mare a operatiilor datorita lipsei necesitatii comunicarii cu serverul 
+
+Principalele dezavantaje ale sistemelor Git :
+ 
+- Modelul distribuit este mai greu de inteles 
+
+- Nu exista asa de multi clienti GUI datorita faptului ca aceste sisteme sunt mai noi 
+
+- Reviziile nu sunt numere incrementale, lucru ce le face mai greu de referentiat 
+
+- Riscul aparitiei de greseli este mare daca modelul nu este familiar
+
+
+\clearpage
+
+      
