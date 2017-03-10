@@ -164,6 +164,7 @@ namespace VCPP_Scientific_Calculator {
 			this->scientificToolStripMenuItem->Name = L"scientificToolStripMenuItem";
 			this->scientificToolStripMenuItem->Size = System::Drawing::Size(152, 22);
 			this->scientificToolStripMenuItem->Text = L"Scientific";
+			this->scientificToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::scientificToolStripMenuItem_Click);
 			// 
 			// historyToolStripMenuItem
 			// 
@@ -595,6 +596,10 @@ private: System::Void historyToolStripMenuItem_Click(System::Object^  sender, Sy
 private: System::Void exitToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 
 	Application::Exit();
+}
+private: System::Void scientificToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+	MyForm::Width = 600;
+	txtDisplay->Width = 486;
 }
 };
 }
