@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 namespace VCPP_Scientific_Calculator {
 
@@ -158,6 +158,7 @@ namespace VCPP_Scientific_Calculator {
 			this->standardToolStripMenuItem->Name = L"standardToolStripMenuItem";
 			this->standardToolStripMenuItem->Size = System::Drawing::Size(152, 22);
 			this->standardToolStripMenuItem->Text = L"Standard";
+			this->standardToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::standardToolStripMenuItem_Click);
 			// 
 			// scientificToolStripMenuItem
 			// 
@@ -202,13 +203,13 @@ namespace VCPP_Scientific_Calculator {
 			// 
 			// btn7
 			// 
-			this->btn7->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
+			this->btn7->Font = (gcnew System::Drawing::Font(L"Wingdings", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(2)));
 			this->btn7->Location = System::Drawing::Point(25, 89);
 			this->btn7->Name = L"btn7";
 			this->btn7->Size = System::Drawing::Size(67, 63);
 			this->btn7->TabIndex = 2;
-			this->btn7->Text = L"7";
+			this->btn7->Text = L"";
 			this->btn7->UseVisualStyleBackColor = true;
 			// 
 			// button1
@@ -219,7 +220,7 @@ namespace VCPP_Scientific_Calculator {
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(67, 63);
 			this->button1->TabIndex = 3;
-			this->button1->Text = L"7";
+			this->button1->Text = L"CE";
 			this->button1->UseVisualStyleBackColor = true;
 			// 
 			// button2
@@ -230,18 +231,18 @@ namespace VCPP_Scientific_Calculator {
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(67, 63);
 			this->button2->TabIndex = 4;
-			this->button2->Text = L"7";
+			this->button2->Text = L"C";
 			this->button2->UseVisualStyleBackColor = true;
 			// 
 			// button3
 			// 
-			this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button3->Location = System::Drawing::Point(244, 89);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(67, 63);
 			this->button3->TabIndex = 5;
-			this->button3->Text = L"7";
+			this->button3->Text = L"±";
 			this->button3->UseVisualStyleBackColor = true;
 			// 
 			// button4
@@ -252,7 +253,7 @@ namespace VCPP_Scientific_Calculator {
 			this->button4->Name = L"button4";
 			this->button4->Size = System::Drawing::Size(67, 63);
 			this->button4->TabIndex = 9;
-			this->button4->Text = L"7";
+			this->button4->Text = L"+";
 			this->button4->UseVisualStyleBackColor = true;
 			// 
 			// button5
@@ -263,8 +264,9 @@ namespace VCPP_Scientific_Calculator {
 			this->button5->Name = L"button5";
 			this->button5->Size = System::Drawing::Size(67, 63);
 			this->button5->TabIndex = 8;
-			this->button5->Text = L"7";
+			this->button5->Text = L"9";
 			this->button5->UseVisualStyleBackColor = true;
+			this->button5->Click += gcnew System::EventHandler(this, &MyForm::button_Click);
 			// 
 			// button6
 			// 
@@ -274,8 +276,9 @@ namespace VCPP_Scientific_Calculator {
 			this->button6->Name = L"button6";
 			this->button6->Size = System::Drawing::Size(67, 63);
 			this->button6->TabIndex = 7;
-			this->button6->Text = L"7";
+			this->button6->Text = L"8";
 			this->button6->UseVisualStyleBackColor = true;
+			this->button6->Click += gcnew System::EventHandler(this, &MyForm::button_Click);
 			// 
 			// button7
 			// 
@@ -287,6 +290,7 @@ namespace VCPP_Scientific_Calculator {
 			this->button7->TabIndex = 6;
 			this->button7->Text = L"7";
 			this->button7->UseVisualStyleBackColor = true;
+			this->button7->Click += gcnew System::EventHandler(this, &MyForm::button_Click);
 			// 
 			// button8
 			// 
@@ -296,7 +300,7 @@ namespace VCPP_Scientific_Calculator {
 			this->button8->Name = L"button8";
 			this->button8->Size = System::Drawing::Size(67, 63);
 			this->button8->TabIndex = 13;
-			this->button8->Text = L"7";
+			this->button8->Text = L"-";
 			this->button8->UseVisualStyleBackColor = true;
 			// 
 			// button9
@@ -307,8 +311,9 @@ namespace VCPP_Scientific_Calculator {
 			this->button9->Name = L"button9";
 			this->button9->Size = System::Drawing::Size(67, 63);
 			this->button9->TabIndex = 12;
-			this->button9->Text = L"7";
+			this->button9->Text = L"6";
 			this->button9->UseVisualStyleBackColor = true;
+			this->button9->Click += gcnew System::EventHandler(this, &MyForm::button_Click);
 			// 
 			// button10
 			// 
@@ -318,8 +323,9 @@ namespace VCPP_Scientific_Calculator {
 			this->button10->Name = L"button10";
 			this->button10->Size = System::Drawing::Size(67, 63);
 			this->button10->TabIndex = 11;
-			this->button10->Text = L"7";
+			this->button10->Text = L"5";
 			this->button10->UseVisualStyleBackColor = true;
+			this->button10->Click += gcnew System::EventHandler(this, &MyForm::button_Click);
 			// 
 			// button11
 			// 
@@ -329,8 +335,9 @@ namespace VCPP_Scientific_Calculator {
 			this->button11->Name = L"button11";
 			this->button11->Size = System::Drawing::Size(67, 63);
 			this->button11->TabIndex = 10;
-			this->button11->Text = L"7";
+			this->button11->Text = L"4";
 			this->button11->UseVisualStyleBackColor = true;
+			this->button11->Click += gcnew System::EventHandler(this, &MyForm::button_Click);
 			// 
 			// button12
 			// 
@@ -340,7 +347,7 @@ namespace VCPP_Scientific_Calculator {
 			this->button12->Name = L"button12";
 			this->button12->Size = System::Drawing::Size(67, 63);
 			this->button12->TabIndex = 17;
-			this->button12->Text = L"7";
+			this->button12->Text = L"*";
 			this->button12->UseVisualStyleBackColor = true;
 			// 
 			// button13
@@ -349,10 +356,12 @@ namespace VCPP_Scientific_Calculator {
 				static_cast<System::Byte>(0)));
 			this->button13->Location = System::Drawing::Point(171, 296);
 			this->button13->Name = L"button13";
+			this->button13->RightToLeft = System::Windows::Forms::RightToLeft::No;
 			this->button13->Size = System::Drawing::Size(67, 63);
 			this->button13->TabIndex = 16;
-			this->button13->Text = L"7";
+			this->button13->Text = L"3";
 			this->button13->UseVisualStyleBackColor = true;
+			this->button13->Click += gcnew System::EventHandler(this, &MyForm::button_Click);
 			// 
 			// button14
 			// 
@@ -362,8 +371,9 @@ namespace VCPP_Scientific_Calculator {
 			this->button14->Name = L"button14";
 			this->button14->Size = System::Drawing::Size(67, 63);
 			this->button14->TabIndex = 15;
-			this->button14->Text = L"7";
+			this->button14->Text = L"2";
 			this->button14->UseVisualStyleBackColor = true;
+			this->button14->Click += gcnew System::EventHandler(this, &MyForm::button_Click);
 			// 
 			// button15
 			// 
@@ -373,8 +383,9 @@ namespace VCPP_Scientific_Calculator {
 			this->button15->Name = L"button15";
 			this->button15->Size = System::Drawing::Size(67, 63);
 			this->button15->TabIndex = 14;
-			this->button15->Text = L"7";
+			this->button15->Text = L"1";
 			this->button15->UseVisualStyleBackColor = true;
+			this->button15->Click += gcnew System::EventHandler(this, &MyForm::button_Click);
 			// 
 			// button16
 			// 
@@ -384,7 +395,7 @@ namespace VCPP_Scientific_Calculator {
 			this->button16->Name = L"button16";
 			this->button16->Size = System::Drawing::Size(67, 63);
 			this->button16->TabIndex = 21;
-			this->button16->Text = L"7";
+			this->button16->Text = L"/";
 			this->button16->UseVisualStyleBackColor = true;
 			// 
 			// button17
@@ -395,7 +406,7 @@ namespace VCPP_Scientific_Calculator {
 			this->button17->Name = L"button17";
 			this->button17->Size = System::Drawing::Size(67, 63);
 			this->button17->TabIndex = 20;
-			this->button17->Text = L"7";
+			this->button17->Text = L"=";
 			this->button17->UseVisualStyleBackColor = true;
 			// 
 			// button18
@@ -406,7 +417,7 @@ namespace VCPP_Scientific_Calculator {
 			this->button18->Name = L"button18";
 			this->button18->Size = System::Drawing::Size(67, 63);
 			this->button18->TabIndex = 19;
-			this->button18->Text = L"7";
+			this->button18->Text = L".";
 			this->button18->UseVisualStyleBackColor = true;
 			// 
 			// button19
@@ -417,8 +428,9 @@ namespace VCPP_Scientific_Calculator {
 			this->button19->Name = L"button19";
 			this->button19->Size = System::Drawing::Size(67, 63);
 			this->button19->TabIndex = 18;
-			this->button19->Text = L"7";
+			this->button19->Text = L"0";
 			this->button19->UseVisualStyleBackColor = true;
+			this->button19->Click += gcnew System::EventHandler(this, &MyForm::button_Click);
 			// 
 			// button20
 			// 
@@ -439,7 +451,7 @@ namespace VCPP_Scientific_Calculator {
 			this->button21->Name = L"button21";
 			this->button21->Size = System::Drawing::Size(67, 63);
 			this->button21->TabIndex = 30;
-			this->button21->Text = L"7";
+			this->button21->Text = L"Exp";
 			this->button21->UseVisualStyleBackColor = true;
 			// 
 			// button22
@@ -461,7 +473,7 @@ namespace VCPP_Scientific_Calculator {
 			this->button23->Name = L"button23";
 			this->button23->Size = System::Drawing::Size(67, 63);
 			this->button23->TabIndex = 28;
-			this->button23->Text = L"7";
+			this->button23->Text = L"Tan";
 			this->button23->UseVisualStyleBackColor = true;
 			// 
 			// button24
@@ -472,7 +484,7 @@ namespace VCPP_Scientific_Calculator {
 			this->button24->Name = L"button24";
 			this->button24->Size = System::Drawing::Size(67, 63);
 			this->button24->TabIndex = 27;
-			this->button24->Text = L"7";
+			this->button24->Text = L"Log";
 			this->button24->UseVisualStyleBackColor = true;
 			// 
 			// button25
@@ -483,7 +495,7 @@ namespace VCPP_Scientific_Calculator {
 			this->button25->Name = L"button25";
 			this->button25->Size = System::Drawing::Size(67, 63);
 			this->button25->TabIndex = 26;
-			this->button25->Text = L"7";
+			this->button25->Text = L"Cos";
 			this->button25->UseVisualStyleBackColor = true;
 			// 
 			// button26
@@ -494,7 +506,7 @@ namespace VCPP_Scientific_Calculator {
 			this->button26->Name = L"button26";
 			this->button26->Size = System::Drawing::Size(67, 63);
 			this->button26->TabIndex = 25;
-			this->button26->Text = L"7";
+			this->button26->Text = L"Sqrt";
 			this->button26->UseVisualStyleBackColor = true;
 			// 
 			// button27
@@ -505,7 +517,7 @@ namespace VCPP_Scientific_Calculator {
 			this->button27->Name = L"button27";
 			this->button27->Size = System::Drawing::Size(67, 63);
 			this->button27->TabIndex = 24;
-			this->button27->Text = L"7";
+			this->button27->Text = L"Sin";
 			this->button27->UseVisualStyleBackColor = true;
 			// 
 			// button28
@@ -521,13 +533,13 @@ namespace VCPP_Scientific_Calculator {
 			// 
 			// button29
 			// 
-			this->button29->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->button29->Font = (gcnew System::Drawing::Font(L"Centaur", 20.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button29->Location = System::Drawing::Point(373, 89);
 			this->button29->Name = L"button29";
 			this->button29->Size = System::Drawing::Size(67, 63);
 			this->button29->TabIndex = 22;
-			this->button29->Text = L"7";
+			this->button29->Text = L"π";
 			this->button29->UseVisualStyleBackColor = true;
 			// 
 			// MyForm
@@ -600,6 +612,22 @@ private: System::Void exitToolStripMenuItem_Click(System::Object^  sender, Syste
 private: System::Void scientificToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 	MyForm::Width = 600;
 	txtDisplay->Width = 486;
+}
+private: System::Void standardToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+	MyForm::Width = 300;
+	MyForm::Height = 437;
+	txtDisplay->Width = 286;
+}
+private: System::Void button_Click(System::Object^  sender, System::EventArgs^  e) {
+	Button ^ Numbers = safe_cast<Button^>(sender);
+	if (txtDisplay->Text == "0")
+	{
+		txtDisplay->Text = Numbers->Text;
+	}
+	else
+	{
+		txtDisplay->Text = txtDisplay->Text + Numbers->Text;
+	}
 }
 };
 }
