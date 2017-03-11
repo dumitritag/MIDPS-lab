@@ -75,6 +75,9 @@ namespace VCPP_Scientific_Calculator {
 	private: System::Windows::Forms::Button^  button27;
 	private: System::Windows::Forms::Button^  button28;
 	private: System::Windows::Forms::Button^  button29;
+	private: System::Windows::Forms::Label^  lblShowOp;
+	private: System::Windows::Forms::ListBox^  listBox1;
+	
 
 	private:
 		/// <summary>
@@ -128,6 +131,8 @@ namespace VCPP_Scientific_Calculator {
 			this->button27 = (gcnew System::Windows::Forms::Button());
 			this->button28 = (gcnew System::Windows::Forms::Button());
 			this->button29 = (gcnew System::Windows::Forms::Button());
+			this->lblShowOp = (gcnew System::Windows::Forms::Label());
+			this->listBox1 = (gcnew System::Windows::Forms::ListBox());
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -156,28 +161,28 @@ namespace VCPP_Scientific_Calculator {
 			// standardToolStripMenuItem
 			// 
 			this->standardToolStripMenuItem->Name = L"standardToolStripMenuItem";
-			this->standardToolStripMenuItem->Size = System::Drawing::Size(152, 22);
+			this->standardToolStripMenuItem->Size = System::Drawing::Size(122, 22);
 			this->standardToolStripMenuItem->Text = L"Standard";
 			this->standardToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::standardToolStripMenuItem_Click);
 			// 
 			// scientificToolStripMenuItem
 			// 
 			this->scientificToolStripMenuItem->Name = L"scientificToolStripMenuItem";
-			this->scientificToolStripMenuItem->Size = System::Drawing::Size(152, 22);
+			this->scientificToolStripMenuItem->Size = System::Drawing::Size(122, 22);
 			this->scientificToolStripMenuItem->Text = L"Scientific";
 			this->scientificToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::scientificToolStripMenuItem_Click);
 			// 
 			// historyToolStripMenuItem
 			// 
 			this->historyToolStripMenuItem->Name = L"historyToolStripMenuItem";
-			this->historyToolStripMenuItem->Size = System::Drawing::Size(152, 22);
+			this->historyToolStripMenuItem->Size = System::Drawing::Size(122, 22);
 			this->historyToolStripMenuItem->Text = L"History";
 			this->historyToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::historyToolStripMenuItem_Click);
 			// 
 			// exitToolStripMenuItem
 			// 
 			this->exitToolStripMenuItem->Name = L"exitToolStripMenuItem";
-			this->exitToolStripMenuItem->Size = System::Drawing::Size(152, 22);
+			this->exitToolStripMenuItem->Size = System::Drawing::Size(122, 22);
 			this->exitToolStripMenuItem->Text = L"Exit";
 			this->exitToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::exitToolStripMenuItem_Click);
 			// 
@@ -200,6 +205,7 @@ namespace VCPP_Scientific_Calculator {
 			this->txtDisplay->Name = L"txtDisplay";
 			this->txtDisplay->Size = System::Drawing::Size(286, 56);
 			this->txtDisplay->TabIndex = 1;
+			this->txtDisplay->TextAlign = System::Windows::Forms::HorizontalAlignment::Right;
 			// 
 			// btn7
 			// 
@@ -222,6 +228,7 @@ namespace VCPP_Scientific_Calculator {
 			this->button1->TabIndex = 3;
 			this->button1->Text = L"CE";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
 			// 
 			// button2
 			// 
@@ -233,6 +240,7 @@ namespace VCPP_Scientific_Calculator {
 			this->button2->TabIndex = 4;
 			this->button2->Text = L"C";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &MyForm::button2_Click);
 			// 
 			// button3
 			// 
@@ -244,6 +252,7 @@ namespace VCPP_Scientific_Calculator {
 			this->button3->TabIndex = 5;
 			this->button3->Text = L"±";
 			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &MyForm::button3_Click);
 			// 
 			// button4
 			// 
@@ -255,6 +264,7 @@ namespace VCPP_Scientific_Calculator {
 			this->button4->TabIndex = 9;
 			this->button4->Text = L"+";
 			this->button4->UseVisualStyleBackColor = true;
+			this->button4->Click += gcnew System::EventHandler(this, &MyForm::Arithmetic_Op);
 			// 
 			// button5
 			// 
@@ -302,6 +312,7 @@ namespace VCPP_Scientific_Calculator {
 			this->button8->TabIndex = 13;
 			this->button8->Text = L"-";
 			this->button8->UseVisualStyleBackColor = true;
+			this->button8->Click += gcnew System::EventHandler(this, &MyForm::Arithmetic_Op);
 			// 
 			// button9
 			// 
@@ -349,6 +360,7 @@ namespace VCPP_Scientific_Calculator {
 			this->button12->TabIndex = 17;
 			this->button12->Text = L"*";
 			this->button12->UseVisualStyleBackColor = true;
+			this->button12->Click += gcnew System::EventHandler(this, &MyForm::Arithmetic_Op);
 			// 
 			// button13
 			// 
@@ -397,6 +409,7 @@ namespace VCPP_Scientific_Calculator {
 			this->button16->TabIndex = 21;
 			this->button16->Text = L"/";
 			this->button16->UseVisualStyleBackColor = true;
+			this->button16->Click += gcnew System::EventHandler(this, &MyForm::Arithmetic_Op);
 			// 
 			// button17
 			// 
@@ -408,6 +421,7 @@ namespace VCPP_Scientific_Calculator {
 			this->button17->TabIndex = 20;
 			this->button17->Text = L"=";
 			this->button17->UseVisualStyleBackColor = true;
+			this->button17->Click += gcnew System::EventHandler(this, &MyForm::button17_Click);
 			// 
 			// button18
 			// 
@@ -419,6 +433,7 @@ namespace VCPP_Scientific_Calculator {
 			this->button18->TabIndex = 19;
 			this->button18->Text = L".";
 			this->button18->UseVisualStyleBackColor = true;
+			this->button18->Click += gcnew System::EventHandler(this, &MyForm::button18_Click);
 			// 
 			// button19
 			// 
@@ -542,11 +557,32 @@ namespace VCPP_Scientific_Calculator {
 			this->button29->Text = L"π";
 			this->button29->UseVisualStyleBackColor = true;
 			// 
+			// lblShowOp
+			// 
+			this->lblShowOp->AutoSize = true;
+			this->lblShowOp->BackColor = System::Drawing::Color::White;
+			this->lblShowOp->Location = System::Drawing::Point(31, 30);
+			this->lblShowOp->Name = L"lblShowOp";
+			this->lblShowOp->Size = System::Drawing::Size(35, 13);
+			this->lblShowOp->TabIndex = 32;
+			this->lblShowOp->Text = L"label1";
+			this->lblShowOp->TextAlign = System::Drawing::ContentAlignment::TopCenter;
+			// 
+			// listBox1
+			// 
+			this->listBox1->FormattingEnabled = true;
+			this->listBox1->Location = System::Drawing::Point(25, 434);
+			this->listBox1->Name = L"listBox1";
+			this->listBox1->Size = System::Drawing::Size(286, 147);
+			this->listBox1->TabIndex = 33;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(584, 431);
+			this->ClientSize = System::Drawing::Size(584, 434);
+			this->Controls->Add(this->listBox1);
+			this->Controls->Add(this->lblShowOp);
 			this->Controls->Add(this->button20);
 			this->Controls->Add(this->button21);
 			this->Controls->Add(this->button22);
@@ -619,6 +655,7 @@ private: System::Void standardToolStripMenuItem_Click(System::Object^  sender, S
 	txtDisplay->Width = 286;
 }
 private: System::Void button_Click(System::Object^  sender, System::EventArgs^  e) {
+	//Buttons numbers
 	Button ^ Numbers = safe_cast<Button^>(sender);
 	if (txtDisplay->Text == "0")
 	{
@@ -627,6 +664,76 @@ private: System::Void button_Click(System::Object^  sender, System::EventArgs^  
 	else
 	{
 		txtDisplay->Text = txtDisplay->Text + Numbers->Text;
+	}
+}
+private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+	//CE button
+	txtDisplay->Clear();
+}
+private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
+	// C button
+	txtDisplay->Clear();
+}
+private: System::Void button18_Click(System::Object^  sender, System::EventArgs^  e) {
+	//Decimal point
+	if (!txtDisplay->Text->Contains("."))
+	{
+		txtDisplay->Text = txtDisplay->Text + ".";
+	}
+}
+private: System::Void Arithmetic_Op(System::Object^  sender, System::EventArgs^  e) {
+	//Operators
+	Button ^ op = safe_cast<Button^>(sender);
+	iFirstnum = Double::Parse(txtDisplay->Text);
+	txtDisplay->Text = "";
+	iOperator = op->Text;
+	lblShowOp->Text = System::Convert::ToString(iFirstnum) + " " + iOperator;
+}
+private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
+	//plus-minus
+	if (txtDisplay->Text->Contains("-"))
+	{
+		txtDisplay->Text = txtDisplay->Text->Remove(0, 1);
+	}
+	else
+	{
+		txtDisplay->Text = "-" + txtDisplay->Text;
+	}
+	
+}
+private: System::Void button17_Click(System::Object^  sender, System::EventArgs^  e) {
+	//egal
+	lblShowOp->Text = "";
+	iSecondnum = Double::Parse(txtDisplay->Text);
+	if (iOperator == "+")
+	{
+		iResult = iFirstnum + iSecondnum;
+		txtDisplay->Text = System::Convert::ToString(iResult);
+		listBox1->Items->Add(System::Convert::ToString(lblShowOp->Text));
+	}
+	else if (iOperator == "-")
+	{
+		iResult = iFirstnum - iSecondnum;
+		txtDisplay->Text = System::Convert::ToString(iResult);
+		listBox1->Items->Add(System::Convert::ToString(lblShowOp->Text));
+	}
+	else if (iOperator == "*")
+	{
+		iResult = iFirstnum * iSecondnum;
+		txtDisplay->Text = System::Convert::ToString(iResult);
+		listBox1->Items->Add(System::Convert::ToString(lblShowOp->Text));
+	}
+	else if (iOperator == "/")
+	{
+		iResult = iFirstnum / iSecondnum;
+		txtDisplay->Text = System::Convert::ToString(iResult);
+		listBox1->Items->Add(System::Convert::ToString(lblShowOp->Text));
+	}
+	else if (iOperator == "Exp")
+	{
+		iResult = (iFirstnum, (1 / iSecondnum));
+		txtDisplay->Text = System::Convert::ToString(Math::Exp((iResult)));
+		listBox1->Items->Add(System::Convert::ToString(lblShowOp->Text));
 	}
 }
 };
