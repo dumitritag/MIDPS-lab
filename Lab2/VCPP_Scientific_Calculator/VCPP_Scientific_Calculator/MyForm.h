@@ -464,7 +464,7 @@ namespace VCPP_Scientific_Calculator {
 			this->button21->Name = L"button21";
 			this->button21->Size = System::Drawing::Size(67, 63);
 			this->button21->TabIndex = 30;
-			this->button21->Text = L"Exp";
+			this->button21->Text = L"^";
 			this->button21->UseVisualStyleBackColor = true;
 			this->button21->Click += gcnew System::EventHandler(this, &MyForm::Arithmetic_Op);
 			// 
@@ -623,11 +623,14 @@ namespace VCPP_Scientific_Calculator {
 			this->Controls->Add(this->btn7);
 			this->Controls->Add(this->txtDisplay);
 			this->Controls->Add(this->menuStrip1);
+			this->KeyPreview = true;
 			this->MainMenuStrip = this->menuStrip1;
 			this->Name = L"MyForm";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Calculator";
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
+			this->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &MyForm::key_down);
+			this->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::key_press);
 			this->menuStrip1->ResumeLayout(false);
 			this->menuStrip1->PerformLayout();
 			this->ResumeLayout(false);
@@ -748,10 +751,9 @@ private: System::Void button17_Click(System::Object^  sender, System::EventArgs^
 		txtDisplay->Text = System::Convert::ToString(iResult);
 		listBox1->Items->Add(System::Convert::ToString(lblShowOp->Text));
 	}
-	else if (iOperator == "Exp")
+	else if (iOperator == "^")
 	{
-		//iResult = (iFirstnum, (1 / iSecondnum));
-		txtDisplay->Text = System::Convert::ToString(Math::Pow(iFirstnum, iSecondnum));   //(Math::Exp((iResult)));
+		txtDisplay->Text = System::Convert::ToString(Math::Pow(iFirstnum, iSecondnum));   
 		listBox1->Items->Add(System::Convert::ToString(lblShowOp->Text));
 	}
 }
@@ -785,8 +787,9 @@ private: System::Void button26_Click(System::Object^  sender, System::EventArgs^
 	//Radical
 	a = Double::Parse(txtDisplay->Text);
 	a = Math::Sqrt(a);
+	lblShowOp->Text = System::Convert::ToString("Sqrt" + "(" + (txtDisplay->Text) + ")");
+	listBox1->Items->Add(System::Convert::ToString(lblShowOp->Text));
 	txtDisplay->Text = System::Convert::ToString(a);
-	listBox1->Items->Add(System::Convert::ToString(txtDisplay->Text));
 	
 	
 }
@@ -817,11 +820,15 @@ private: System::Void button23_Click(System::Object^  sender, System::EventArgs^
 private: System::Void button28_Click(System::Object^  sender, System::EventArgs^  e) {
 	//x^2
 	a = Convert::ToDouble(txtDisplay->Text) * Convert::ToDouble(txtDisplay->Text);
+	lblShowOp->Text = System::Convert::ToString((txtDisplay->Text) + "^" + "2");
+	listBox1->Items->Add(System::Convert::ToString(lblShowOp->Text));
 	txtDisplay->Text = Convert::ToString(a);
 }
 private: System::Void button20_Click(System::Object^  sender, System::EventArgs^  e) {
 	//1/x
 	a = Convert::ToDouble(1.0 / Convert::ToDouble(txtDisplay->Text));
+	lblShowOp->Text = System::Convert::ToString("1" + "/" + (txtDisplay->Text));
+	listBox1->Items->Add(System::Convert::ToString(lblShowOp->Text));
 	txtDisplay->Text = Convert::ToString(a);
 }
 private: System::Void button22_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -832,11 +839,40 @@ private: System::Void button22_Click(System::Object^  sender, System::EventArgs^
 	a = Math::Log10(a);
 	txtDisplay->Text = System::Convert::ToString(a);
 }
-/*private: System::Void button21_Click(System::Object^  sender, System::EventArgs^  e) {
-	 //Exp
-	txtDisplay->Text = System::Convert::ToString(Math::Pow(iFirstnum, iSecondnum));
-	listBox1->Items->Add(System::Convert::ToString(lblShowOp->Text));
-}*/
 
+	    // Boolean flag used to determine when a character other than a number is entered.
+	bool nonNumberEntered;
+
+// Handle the KeyDown event to determine the type of character entered into the control.
+private: System::Void key_down(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e) {
+	// Initialize the flag to false.
+		nonNumberEntered = false;
+
+	// Determine whether the keystroke is a number from the top of the keyboard.
+	if (e->KeyCode < Keys::D0 || e->KeyCode > Keys::D9)
+	{
+		// Determine whether the keystroke is a number from the keypad.
+		if (e->KeyCode < Keys::NumPad0 || e->KeyCode > Keys::NumPad9)
+		{
+			// Determine whether the keystroke is a backspace.
+			if (e->KeyCode != Keys::Back)
+			{
+				// A non-numerical keystroke was pressed.
+				// Set the flag to true and evaluate in KeyPress event.
+				nonNumberEntered = true;
+			}
+		}
+	}
+}
+	    // This event occurs after the KeyDown event and can be used to prevent
+	// characters from entering the control.
+private: System::Void key_press(System::Object^  sender, System::Windows::Forms::KeyPressEventArgs^  e) {
+	// Check for the flag being set in the KeyDown event.
+	if (nonNumberEntered == true)
+	{
+		// Stop the character from being entered into the control since it is non-numerical.
+		e->Handled = true;
+	}
+}
 };
 }
