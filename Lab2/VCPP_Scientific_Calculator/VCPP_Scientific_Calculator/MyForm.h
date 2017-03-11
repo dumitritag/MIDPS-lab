@@ -77,7 +77,8 @@ namespace VCPP_Scientific_Calculator {
 	private: System::Windows::Forms::Button^  button29;
 	private: System::Windows::Forms::Label^  lblShowOp;
 	private: System::Windows::Forms::ListBox^  listBox1;
-	
+	private: System::Windows::Forms::ToolStripMenuItem^  historyToolStripMenuItem1;
+
 
 	private:
 		/// <summary>
@@ -97,6 +98,7 @@ namespace VCPP_Scientific_Calculator {
 			this->standardToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->scientificToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->historyToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->historyToolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->exitToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->editToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->helpToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -144,15 +146,15 @@ namespace VCPP_Scientific_Calculator {
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(584, 24);
+			this->menuStrip1->Size = System::Drawing::Size(543, 24);
 			this->menuStrip1->TabIndex = 0;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
 			// fileToolStripMenuItem
 			// 
-			this->fileToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(4) {
+			this->fileToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(5) {
 				this->standardToolStripMenuItem,
-					this->scientificToolStripMenuItem, this->historyToolStripMenuItem, this->exitToolStripMenuItem
+					this->scientificToolStripMenuItem, this->historyToolStripMenuItem, this->historyToolStripMenuItem1, this->exitToolStripMenuItem
 			});
 			this->fileToolStripMenuItem->Name = L"fileToolStripMenuItem";
 			this->fileToolStripMenuItem->Size = System::Drawing::Size(37, 20);
@@ -161,28 +163,37 @@ namespace VCPP_Scientific_Calculator {
 			// standardToolStripMenuItem
 			// 
 			this->standardToolStripMenuItem->Name = L"standardToolStripMenuItem";
-			this->standardToolStripMenuItem->Size = System::Drawing::Size(122, 22);
+			this->standardToolStripMenuItem->Size = System::Drawing::Size(152, 22);
 			this->standardToolStripMenuItem->Text = L"Standard";
 			this->standardToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::standardToolStripMenuItem_Click);
 			// 
 			// scientificToolStripMenuItem
 			// 
 			this->scientificToolStripMenuItem->Name = L"scientificToolStripMenuItem";
-			this->scientificToolStripMenuItem->Size = System::Drawing::Size(122, 22);
+			this->scientificToolStripMenuItem->Size = System::Drawing::Size(152, 22);
 			this->scientificToolStripMenuItem->Text = L"Scientific";
 			this->scientificToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::scientificToolStripMenuItem_Click);
 			// 
 			// historyToolStripMenuItem
 			// 
+			this->historyToolStripMenuItem->Checked = true;
+			this->historyToolStripMenuItem->CheckState = System::Windows::Forms::CheckState::Checked;
 			this->historyToolStripMenuItem->Name = L"historyToolStripMenuItem";
-			this->historyToolStripMenuItem->Size = System::Drawing::Size(122, 22);
+			this->historyToolStripMenuItem->Size = System::Drawing::Size(152, 22);
 			this->historyToolStripMenuItem->Text = L"History";
 			this->historyToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::historyToolStripMenuItem_Click);
+			// 
+			// historyToolStripMenuItem1
+			// 
+			this->historyToolStripMenuItem1->Name = L"historyToolStripMenuItem1";
+			this->historyToolStripMenuItem1->Size = System::Drawing::Size(152, 22);
+			this->historyToolStripMenuItem1->Text = L"History";
+			this->historyToolStripMenuItem1->Click += gcnew System::EventHandler(this, &MyForm::historyToolStripMenuItem1_Click);
 			// 
 			// exitToolStripMenuItem
 			// 
 			this->exitToolStripMenuItem->Name = L"exitToolStripMenuItem";
-			this->exitToolStripMenuItem->Size = System::Drawing::Size(122, 22);
+			this->exitToolStripMenuItem->Size = System::Drawing::Size(152, 22);
 			this->exitToolStripMenuItem->Text = L"Exit";
 			this->exitToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::exitToolStripMenuItem_Click);
 			// 
@@ -580,7 +591,7 @@ namespace VCPP_Scientific_Calculator {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(584, 434);
+			this->ClientSize = System::Drawing::Size(543, 433);
 			this->Controls->Add(this->listBox1);
 			this->Controls->Add(this->lblShowOp);
 			this->Controls->Add(this->button20);
@@ -617,7 +628,8 @@ namespace VCPP_Scientific_Calculator {
 			this->Controls->Add(this->menuStrip1);
 			this->MainMenuStrip = this->menuStrip1;
 			this->Name = L"MyForm";
-			this->Text = L"MyForm";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
+			this->Text = L"Calculator";
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			this->menuStrip1->ResumeLayout(false);
 			this->menuStrip1->PerformLayout();
@@ -635,23 +647,31 @@ namespace VCPP_Scientific_Calculator {
 
 
 	private: System::Void MyForm_Load(System::Object^  sender, System::EventArgs^  e) {
-		MyForm::Width = 300;
-		MyForm::Height = 437;
+		MyForm::Width = 353;
+		MyForm::Height = 473;
 		txtDisplay->Width = 286;
+		historyToolStripMenuItem1->Visible = false;
 	}
 private: System::Void historyToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+	if (historyToolStripMenuItem->Checked == true)
+	{
+		listBox1->Visible = true;
+		historyToolStripMenuItem->Visible = false;
+		historyToolStripMenuItem1->Visible = true;
+		MyForm::Height = 632;
+	}
 }
 private: System::Void exitToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 
 	Application::Exit();
 }
 private: System::Void scientificToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-	MyForm::Width = 600;
-	txtDisplay->Width = 486;
+	MyForm::Width = 559;
+	txtDisplay->Width = 487;
 }
 private: System::Void standardToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-	MyForm::Width = 300;
-	MyForm::Height = 437;
+	MyForm::Width = 353;
+	MyForm::Height = 473;
 	txtDisplay->Width = 286;
 }
 private: System::Void button_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -735,6 +755,13 @@ private: System::Void button17_Click(System::Object^  sender, System::EventArgs^
 		txtDisplay->Text = System::Convert::ToString(Math::Exp((iResult)));
 		listBox1->Items->Add(System::Convert::ToString(lblShowOp->Text));
 	}
+}
+private: System::Void historyToolStripMenuItem1_Click(System::Object^  sender, System::EventArgs^  e) {
+	historyToolStripMenuItem->Visible = true;
+	listBox1->Width = 265;
+	listBox1->Visible = false;
+	MyForm::Height = 473;
+	historyToolStripMenuItem1->Visible = false;
 }
 };
 }
