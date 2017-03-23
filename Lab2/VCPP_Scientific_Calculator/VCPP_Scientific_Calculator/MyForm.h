@@ -637,6 +637,8 @@ namespace VCPP_Scientific_Calculator {
 			this->PerformLayout();
 
 		}
+
+/*
 #pragma endregion
 		double iFirstnum;
 		double iSecondnum;
@@ -707,6 +709,7 @@ private: System::Void Arithmetic_Op(System::Object^  sender, System::EventArgs^ 
 	Button ^ op = safe_cast<Button^>(sender);
 	iFirstnum = Double::Parse(txtDisplay->Text);
 	txtDisplay->Text = "";
+	//txtDisplay->Text += "";
 	iOperator = op->Text;
 	lblShowOp->Text = System::Convert::ToString(iFirstnum) + " " + iOperator;
 
@@ -863,6 +866,55 @@ private: System::Void key_down(System::Object^  sender, System::Windows::Forms::
 			}
 		}
 	}
+	if (e->KeyCode == Keys::D0 || e->KeyCode == Keys::NumPad0)
+	{
+     txtDisplay->Text += "0";
+	}
+	if (e->KeyCode == Keys::D1 || e->KeyCode == Keys::NumPad1)
+	{
+		txtDisplay->Text += "1";
+	}
+	if (e->KeyCode == Keys::D2 || e->KeyCode == Keys::NumPad2)
+	{
+		txtDisplay->Text += "2";
+	}
+	if (e->KeyCode == Keys::D3 || e->KeyCode == Keys::NumPad3)
+	{
+		txtDisplay->Text += "3";
+	}
+	if (e->KeyCode == Keys::D4 || e->KeyCode == Keys::NumPad4)
+	{
+		txtDisplay->Text += "4";
+	}
+	if (e->KeyCode == Keys::D5 || e->KeyCode == Keys::NumPad5)
+	{
+		txtDisplay->Text += "5";
+	}
+	if (e->KeyCode == Keys::D6 || e->KeyCode == Keys::NumPad6)
+	{
+		txtDisplay->Text += "6";
+	}
+	if (e->KeyCode == Keys::D7 || e->KeyCode == Keys::NumPad7)
+	{
+		txtDisplay->Text += "7";
+	}
+	if (e->KeyCode == Keys::D8 || e->KeyCode == Keys::NumPad8)
+	{
+		txtDisplay->Text += "8";
+	}
+	if (e->KeyCode == Keys::D9 || e->KeyCode == Keys::NumPad9)
+	{
+		txtDisplay->Text += "9";
+	}
+	if (e->KeyCode == Keys::Oemcomma)
+	{
+		txtDisplay->Text += ",";
+	}
+	if (e->KeyCode == Keys::OemMinus || e->KeyCode == Keys::Subtract)
+	{
+		txtDisplay->Text += "-";
+	}
+
 }
 	    // This event occurs after the KeyDown event and can be used to prevent
 	// characters from entering the control.
@@ -876,3 +928,4 @@ private: System::Void key_press(System::Object^  sender, System::Windows::Forms:
 }
 };
 }
+*/
