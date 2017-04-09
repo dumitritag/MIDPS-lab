@@ -1,15 +1,23 @@
 MIDPS lab #2
 
 GUI Development
+
 •	Visual Studio
+
 •	Xcode
+
 •	QTCreator
+
 •	Code::Blocks
 
 Conditii Necesare:
+
 •	IDEs: Visual Studio, QTCreator, Xcode, Code::Blocks
+
 •	Limbaje de programare: C/C++, C#, Objective C, Python, etc
+
 •	Technologii si Frameworks: Forms, wxWidgets, Win32 API, WinRT API, PyQt or others (depinde de IDE si limbajul de programare ales)
+
 •	Timp de lucru: 4-8 hours
 
 Obiective:
