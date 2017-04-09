@@ -1,5 +1,38 @@
-Lucrarea data de laborator consta in crearea unui calculator stiintific pentru a acumula cunostinte mai profunde in GUI Development. IDE ales de mine este Visual Studio 2015, iar limbajul de programare este C++.
+MIDPS lab #2
 
-Mai intii de toate am creat un proiect "C++ Windows Form ". Am creat o forma noua. Am decis sa fac un calculator standard si unul stiintific cu mai multe instructiuni si sa am si o istorie in care sa vad operatiile precedente. Deci in forma am adaugat un ToolSripMenu care se numeste File si care consta din instructiunile Standard, Scientific, History si Exit. Apoi am creat text box-ul-"ecranul" calculatorului, un label in text box in care se va afisa numerele si operanzii introdusi, butoane si o list box in care se va afisa istoria. Am denumit butoanele, am creat functiile pentru calcule, functiile pentru ToolScripMenu. Initial cind vom rula programul va aparea un calculator standard. Alegind din ToolScripMenu Scientific, calculatorul se va modela in unul stiintific,Exit-pentru iesire si History-va aprea istoria, apasind din nou va disparea. Utilizatorul va vedea doar o singura tasta History, dar defapt ele sunt 2. Mai intii se apasa una,pentru a aparea istoria, tasta dispare si apare a doua cu aceeasi denumire-apasind-o dispare istoria si apare din nou acea prima tasta. Am elaborat un event KeyPress pentru a nu putea scrie caracterele in afara de cifre.
+GUI Development
+* Visual Studio
+* Xcode
+* QTCreator
+* Code::Blocks
 
-Am intilnit probleme cu operatiile cu numere zecimale si cu lucru cu tastatura.  
+Conditii Necesare:
+* IDEs: Visual Studio, QTCreator, Xcode, Code::Blocks
+* Limbaje de programare: C/C++, C#, Objective C, Python, etc
+* Technologii si Frameworks: Forms, wxWidgets, Win32 API, WinRT API, PyQt or others (depinde de IDE si limbajul de programare ales)
+* Timp de lucru: 4-8 hours
+
+Obiective:
+* Realizeaza un simplu GUI Calculator
+* Operatiile simple: +,-,*,/,putere,radical,InversareSemn(+/-),operatii cu numere zecimale.
+* Divizare proiectului in doua module - Interfata grafica(Modul GUI) si Modulul de baza(Core Module).
+
+Cerinte Generale:
+Se considera ca ai trecut cu succes laboratorul daca ai urmat toti pasii din:
+* Submission Process
+Technical Prerequisites:
+* Aplicatia trebuie sa fie divizata in doua module: 
+o Core module - contine functionalitatile de baza
+o GUI module - include codul responsabil de crearea Interfetei Grafice si interactiunea ei cu elementele interfetei grafice si modulul de baza
+* 
+o Incearca sa realizezi programul tau sa fie cross platform (Compatibil cu diferite platforme: Windows,Linux,Mac).
+Laboratory Requirements:
+Note: - Respectarea UX - Manipularea eventurilor de input gresit de catre utilizator
+* Basic Level (nota 5 || 6):
+o Realizeaza un simplu GUI calculator care suporta functiile de baza: +, -, /, *.
+* Normal Level (nota 7 || 8):
+o Realizeaza un simplu GUI calculator care suporta urmatoare functii: +, -, /, *, putere, radical, InversareSemn(+/-).
+* Advanced Level (nota 9 || 10):
+o Realizeaza un simplu GUI calculator care suporta urmatoare functii: +, -, /, *, putere, radical, InversareSemn(+/-), operatii cu numere zecimale.
+o Divizare proiectului in doua module - Interfata grafica(Modul GUI) si Modulul de baza(Core Module).
+
