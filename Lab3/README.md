@@ -5,9 +5,8 @@ _Note: Foloseste un IDE diferit pentru fiecare lucrare de laborator_
 ##  Web development
 
 ### Prerequisites:
-  - IDEs/text editors (alege unul): Sublime Text 3, RubyMine, PyCharm, Komodo, Coda, phpStorm, webStorm, Brackets
-  - Limbaje de prohramare: Ruby, Python, JS, PHP
-  - Technologii si Frameworks: Ruby on Rails, Django, Node.js && Express
+  - IDEs/text editors (alege unul): NetBeans 
+  - Limbaje de prohramare: PHP
   
 ### Obiective:
   - Realizarea unui simplu Web Site personal
