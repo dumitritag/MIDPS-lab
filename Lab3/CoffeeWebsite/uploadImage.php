@@ -1,6 +1,6 @@
 <?php
 
-$title = "Upload new image";
+$title = "Incarca o imagine";
 
 $content = '<form action="" method="post" enctype="multipart/form-data">
     <label for="file">Filename: </label>

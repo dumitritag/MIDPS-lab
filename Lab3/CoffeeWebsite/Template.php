@@ -23,8 +23,7 @@
                 <?php echo $content; ?>
             </div>
             <footer>
-                <li><a href="Calitate.php">Calitate</a></li>
-                <li><a href="feedback.php">Feedback</a></li> 
+                
             </footer>
         </div>
     </body>

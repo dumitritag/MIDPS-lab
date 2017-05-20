@@ -15,7 +15,7 @@ if(isset($_POST['types']))
         }
 
         //Output page data
-$title = 'Coffee overview';
+$title = 'Cafea';
 $content = $coffeeController->CreateCoffeeDropdownList().$coffeeTables;
 
 include 'Template.php';

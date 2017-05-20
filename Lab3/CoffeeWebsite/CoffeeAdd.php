@@ -24,6 +24,7 @@ $content ="<form action='' method='post'>
 
         <label for='country'>Tara: </label>
         <input type='text' class='inputField' name='txtCountry' /><br/>
+        
 
         <label for='image'>Imagine: </label>
         <select class='inputField' name='ddlImage'>"

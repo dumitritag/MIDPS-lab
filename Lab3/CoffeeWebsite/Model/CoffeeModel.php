@@ -105,34 +105,6 @@ class CoffeeModel {
         $this->PerformQuery($query);
     }
     
-    function UpdateCoffee($id, CoffeeEntity $coffee)
-    {   require 'Credentials.php';
-        $link = mysqli_connect($host, $user, $passwd);
-        $query = sprintf("UPDATE coffee
-                          SET name = '%s', type = '%s', price = '%s', roast = '%s',
-                          country = '%s', image = '%s', review = '%s'
-                          WHERE id = $id",
-                mysqli_real_escape_string($coffee->name),
-        mysqli_real_escape_string($link, $coffee->type),
-        mysqli_real_escape_string($link, $coffee->price),
-        mysqli_real_escape_string($link, $coffee->roast),
-        mysqli_real_escape_string($link, $coffee->country),
-        mysqli_real_escape_string($link, "Images/Coffee/" . $coffee->image),
-        mysqli_real_escape_string($link, $coffee->review));
-        $this->PerformQuery($query);
-    }
-    
-    function DeleteCoffee($id)
-    {  
-        require 'Credentials.php';
-        $link = mysqli_connect($host, $user, $passwd);
-        mysqli_select_db($link, $database);   
-        $query = "DELETE FROM coffee WHERE id = $id";
-        //Execute query and close connection
-        mysqli_query($link, $query) or die(mysqli_error($link));
-        mysqli_close($link);
-    }
-    
     function PerformQuery($query)
     {
         require 'Model/Credentials.php';
