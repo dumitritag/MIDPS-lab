@@ -4,10 +4,10 @@
 [EN] Version Control Systems
 
 ### Prerequisites:
-  - IDEs: Command Line Interface (CLI) | CLI Editors - nano, vim, emacs
-  - Limbaje de programare: bash, C/C++
+  - IDEs: Command Line Interface (CLI) 
+  - Limbaje de programare: bash
   - Frameworks:
-  - Technologii: Version Control Systems | The power of vim 
+  - Technologii: Version Control Systems 
   - Timp: 4-8 ore
 
 ### Obiective:
