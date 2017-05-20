@@ -32,12 +32,6 @@ Note:
     - Respectarea UX
     - Manipularea eventurilor de input gresit de catre utilizator
 
-  - _Basic Level_ (nota 5 || 6):
-    - Realizeaza un simplu GUI calculator care suporta functiile de baza: +, -, /, *.
-
-  - _Normal Level_ (nota 7 || 8):
-    - Realizeaza un simplu GUI calculator care suporta urmatoare functii: +, -, /, *, putere, radical, InversareSemn(+/-).
-
   - _Advanced Level_ (nota 9 || 10):
     - Realizeaza un simplu GUI calculator care suporta urmatoare functii: +, -, /, *, putere, radical, InversareSemn(+/-), operatii cu numere zecimale.
     - Divizare proiectului in doua module -  Interfata grafica(Modul GUI) si Modulul de baza(Core Module).
