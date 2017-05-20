@@ -8,16 +8,16 @@ import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import java.io.IOException;
+
 import com.example.flagsquizapp.Common.Common;
 import com.example.flagsquizapp.DbHelper.DbHelper;
-
-import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
     SeekBar seekBar;
     TextView txtMode;
-    Button btnPlay, btnScore;
+    Button btnPlay,btnScore;
     DbHelper db;
 
     @Override
@@ -26,9 +26,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         seekBar = (SeekBar)findViewById(R.id.seekBar);
-        txtMode = (TextView) findViewById(R.id.txtMode);
-        btnPlay = (Button) findViewById(R.id.btnPlay);
+        txtMode = (TextView)findViewById(R.id.txtMode);
+        btnPlay = (Button)findViewById(R.id.btnPlay);
         btnScore = (Button)findViewById(R.id.btnScore);
+
 
         db = new DbHelper(this);
         try{
@@ -37,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
         catch (IOException e){
             e.printStackTrace();
         }
+
+
+
 
         //Event
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {

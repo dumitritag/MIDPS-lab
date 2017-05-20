@@ -9,9 +9,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Build;
 import android.util.Log;
 
-import com.example.flagsquizapp.Model.Question;
-import com.example.flagsquizapp.Model.Ranking;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -20,11 +17,12 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by pc on 30/04/2017.
- */
+import com.example.flagsquizapp.Common.Common;
+import com.example.flagsquizapp.Model.Question;
+import com.example.flagsquizapp.Model.Ranking;
 
 public class DbHelper extends SQLiteOpenHelper {
+
     private static String DB_NAME = "MyDB.db";
     private static String DB_PATH = "";
     private SQLiteDatabase mDataBase;
@@ -91,12 +89,7 @@ public class DbHelper extends SQLiteOpenHelper {
         }
     }
 
-    @Override
-    public synchronized void close(){
-if(mDataBase != null)
-    mDataBase.close();
-        super.close();
-    }
+
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -139,14 +132,51 @@ if(mDataBase != null)
         return listQuestion;
     }
 
-    //Insert Score to Ranking table
-    public void insertScore(int Score){
+    //We need improve this function to optimize process from Playing
+    public List<Question> getQuestionMode(String mode) {
+        List<Question> listQuestion = new ArrayList<>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c;
+        int limit = 0;
+        if (mode.equals(Common.MODE.EASY.toString()))
+            limit = 30;
+        else if (mode.equals(Common.MODE.MEDIUM.toString()))
+            limit = 50;
+        else if (mode.equals(Common.MODE.HARD.toString()))
+            limit = 100;
+        else if (mode.equals(Common.MODE.HARDEST.toString()))
+            limit = 200;
+        try {
+            c = db.rawQuery(String.format("SELECT * FROM Question ORDER BY Random() LIMIT %d", limit), null);
+            if (c == null) return null;
+            c.moveToFirst();
+            do {
+                int Id = c.getInt(c.getColumnIndex("ID"));
+                String Image = c.getString(c.getColumnIndex("Image"));
+                String AnswerA = c.getString(c.getColumnIndex("AnswerA"));
+                String AnswerB = c.getString(c.getColumnIndex("AnswerB"));
+                String AnswerC = c.getString(c.getColumnIndex("AnswerC"));
+                String AnswerD = c.getString(c.getColumnIndex("AnswerD"));
+                String CorrectAnswer = c.getString(c.getColumnIndex("CorrectAnswer"));
 
-            SQLiteDatabase db = this.getWritableDatabase();
-            ContentValues contentValues = new ContentValues();
-            contentValues.put("Score", Score);
-            db.insert("Ranking", null, contentValues);
+                Question question = new Question(Id, Image, AnswerA, AnswerB, AnswerC, AnswerD, CorrectAnswer);
+                listQuestion.add(question);
+            }
+            while (c.moveToNext());
+            c.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
+        db.close();
+        return listQuestion;
+    }
+
+    //Insert Score to Ranking table
+    public void insertScore(double score) {
+        String query = "INSERT INTO Ranking(Score) VALUES("+score+")";
+        mDataBase.execSQL(query);
+    }
 
     //Get Score and sort ranking
     public List<Ranking> getRanking() {
@@ -173,4 +203,31 @@ if(mDataBase != null)
 
     }
 
+
+    //Update version 2.0
+    public int getPlayCount(int level)
+    {
+        int result = 0;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c;
+        try{
+            c = db.rawQuery("SELECT PlayCount FROM UserPlayCount WHERE Level="+level+";",null);
+            if(c == null) return 0;
+            c.moveToNext();
+            do{
+                result  = c.getInt(c.getColumnIndex("PlayCount"));
+            }while(c.moveToNext());
+            c.close();
+        }catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        return result;
+    }
+
+    public void updatePlayCount(int level,int playCount)
+    {
+        String query = String.format("UPDATE UserPlayCount Set PlayCount = %d WHERE Level = %d",playCount,level);
+        mDataBase.execSQL(query);
+    }
 }

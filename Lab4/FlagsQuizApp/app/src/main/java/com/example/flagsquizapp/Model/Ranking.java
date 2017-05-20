@@ -5,6 +5,7 @@ package com.example.flagsquizapp.Model;
  */
 
 public class Ranking {
+
     private int Id;
     private double Score;
 
