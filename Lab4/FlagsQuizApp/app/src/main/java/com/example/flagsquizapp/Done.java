@@ -46,7 +46,7 @@ public class Done extends AppCompatActivity {
             int totalQuestion = extra.getInt("TOTAL");
             int correctAnswer = extra.getInt("CORRECT");
 
-            //Update 2.0
+
             int playCount = 0;
             if(totalQuestion == 30) // EASY MODE
             {
@@ -73,17 +73,15 @@ public class Done extends AppCompatActivity {
                 db.updatePlayCount(3,playCount); // Set PlayCount ++
             }
 
-            double subtract = ((5.0/(float)score)*100)*(playCount-1); //-1 because we playCount++ before we calculate result
+            double subtract = (((float)score)*100)*(playCount-1); //-1 because we playCount++ before we calculate result
             double finalScore = score - subtract;
 
-            txtResultScore.setText(String.format("SCORE : %.1f %%", finalScore,5*(playCount-1)));
+            txtResultScore.setText(String.format("SCORE : %.1f ", finalScore,(playCount-1)));
             txtResultQuestion.setText(String.format("PASSED : %d/%d", correctAnswer, totalQuestion));
 
             progressBarResult.setMax(totalQuestion);
             progressBarResult.setProgress(correctAnswer);
 
-            //save score
-            db.insertScore(finalScore);
         }
     }
 }

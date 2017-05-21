@@ -15,9 +15,8 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
-        android:background="@drawable/united_states_of_america"
-        android:gravity="center"
-        />
+        android:background="@drawable/moldova"
+        android:gravity="center" />
 
     <RelativeLayout
         android:layout_below="@+id/flags"
@@ -40,27 +39,15 @@
             <Button
                 android:id="@+id/btnPlay"
                 style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:background="#AD1457"
+                android:background="@color/colorPrimary"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:text="PLAY"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold"
-                android:theme="@style/MyButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <Button
-                android:id="@+id/btnScore"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_margin="8dp"
-                android:background="#FF8A80"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:text="SCORE"
-                android:textColor="#FFFFFF"
-                android:textStyle="bold"
-                android:theme="@style/MyButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:theme="@style/MyButton" />
 
         </LinearLayout>
 

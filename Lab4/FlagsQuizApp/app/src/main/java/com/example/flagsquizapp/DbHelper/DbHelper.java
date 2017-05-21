@@ -34,7 +34,7 @@ public class DbHelper extends SQLiteOpenHelper {
         DB_PATH = context.getApplicationInfo().dataDir + "/databases/";
         File file = new File(DB_PATH+"MyDB.db");
         if(file.exists())
-            openDataBase(); // Add this line to fix db.insert can't insert values
+            openDataBase();
         this.mContext = context;
     }
 
@@ -101,7 +101,6 @@ public class DbHelper extends SQLiteOpenHelper {
 
     }
 
-    //CRUD For Table
     public List<Question> getAllQuestion() {
         List<Question> listQuestion = new ArrayList<>();
         SQLiteDatabase db = this.getWritableDatabase();
@@ -132,7 +131,6 @@ public class DbHelper extends SQLiteOpenHelper {
         return listQuestion;
     }
 
-    //We need improve this function to optimize process from Playing
     public List<Question> getQuestionMode(String mode) {
         List<Question> listQuestion = new ArrayList<>();
         SQLiteDatabase db = this.getWritableDatabase();
@@ -172,39 +170,6 @@ public class DbHelper extends SQLiteOpenHelper {
         return listQuestion;
     }
 
-    //Insert Score to Ranking table
-    public void insertScore(double score) {
-        String query = "INSERT INTO Ranking(Score) VALUES("+score+")";
-        mDataBase.execSQL(query);
-    }
-
-    //Get Score and sort ranking
-    public List<Ranking> getRanking() {
-        List<Ranking> listRanking = new ArrayList<>();
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c;
-        try {
-            c = db.rawQuery("SELECT * FROM Ranking Order By Score DESC;", null);
-            if (c == null) return null;
-            c.moveToNext();
-            do {
-                int Id = c.getInt(c.getColumnIndex("Id"));
-                double Score = c.getDouble(c.getColumnIndex("Score"));
-
-                Ranking ranking = new Ranking(Id, Score);
-                listRanking.add(ranking);
-            } while (c.moveToNext());
-            c.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        db.close();
-        return listRanking;
-
-    }
-
-
-    //Update version 2.0
     public int getPlayCount(int level)
     {
         int result = 0;

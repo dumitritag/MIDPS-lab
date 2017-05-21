@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     SeekBar seekBar;
     TextView txtMode;
-    Button btnPlay,btnScore;
+    Button btnPlay;
     DbHelper db;
 
     @Override
@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
         seekBar = (SeekBar)findViewById(R.id.seekBar);
         txtMode = (TextView)findViewById(R.id.txtMode);
         btnPlay = (Button)findViewById(R.id.btnPlay);
-        btnScore = (Button)findViewById(R.id.btnScore);
 
 
         db = new DbHelper(this);
@@ -38,8 +37,6 @@ public class MainActivity extends AppCompatActivity {
         catch (IOException e){
             e.printStackTrace();
         }
-
-
 
 
         //Event
@@ -76,14 +73,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btnScore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),Score.class);
-                startActivity(intent);
-                finish();
-            }
-        });
     }
 
     private String getPlayMode() {
