@@ -1,87 +1,99 @@
 package com.example.ourapp;
 
+import android.content.DialogInterface;
+import android.content.res.Resources;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.content.Intent;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.SeekBar;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
-import java.io.IOException;
+import java.util.ArrayList;
 
-import com.example.ourapp.Common.Common;
 import com.example.ourapp.DbHelper.DbHelper;
 
 public class MainActivity extends AppCompatActivity {
-    SeekBar seekBar;
-    TextView txtMode;
-    Button btnPlay;
-    DbHelper db;
+
+    DbHelper dbHelper;
+    ArrayAdapter<String> mAdapter;
+    ListView lstTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        seekBar = (SeekBar)findViewById(R.id.seekBar);
-        txtMode = (TextView)findViewById(R.id.txtMode);
-        btnPlay = (Button)findViewById(R.id.btnPlay);
+        dbHelper = new DbHelper(this);
 
+        lstTask = (ListView)findViewById(R.id.lstTask);
 
-        db = new DbHelper(this);
-        try{
-            db.createDataBase();
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
-
-
-        //Event
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if(progress == 0)
-                    txtMode.setText(Common.MODE.EASY.toString());
-                else if(progress == 1)
-                    txtMode.setText(Common.MODE.MEDIUM.toString());
-                else if(progress == 2)
-                    txtMode.setText(Common.MODE.HARD.toString());
-                else if(progress == 3)
-                    txtMode.setText(Common.MODE.HARDEST.toString());
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-        btnPlay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),Playing.class);
-                intent.putExtra("MODE",getPlayMode()); // Send Mode to Playing page
-                startActivity(intent);
-                finish();
-            }
-        });
-
+        loadTaskList();
     }
 
-    private String getPlayMode() {
-        if(seekBar.getProgress()==0)
-            return Common.MODE.EASY.toString();
-        else if(seekBar.getProgress()==1)
-            return Common.MODE.MEDIUM.toString();
-        else if(seekBar.getProgress()==2)
-            return Common.MODE.HARD.toString();
-        else
-            return Common.MODE.HARDEST.toString();
+    private void loadTaskList() {
+        ArrayList<String> taskList = dbHelper.getTaskList();
+        if(mAdapter==null){
+            mAdapter = new ArrayAdapter<String>(this,R.layout.row,R.id.task_title,taskList);
+            lstTask.setAdapter(mAdapter);
+        }
+        else{
+            mAdapter.clear();
+            mAdapter.addAll(taskList);
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu,menu);
+
+        //Change menu icon color
+        Drawable icon = menu.getItem(0).getIcon();
+        icon.mutate();
+        icon.setColorFilter(getResources().getColor(android.R.color.white), PorterDuff.Mode.SRC_IN);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_add_task:
+                final EditText taskEditText = new EditText(this);
+                AlertDialog dialog = new AlertDialog.Builder(this)
+                        .setTitle("Add New Task")
+                        .setMessage("What do you want to do next?")
+                        .setView(taskEditText)
+                        .setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                String task = String.valueOf(taskEditText.getText());
+                                dbHelper.insertNewTask(task);
+                                loadTaskList();
+                            }
+                        })
+                        .setNegativeButton("Cancel",null)
+                        .create();
+                dialog.show();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void deleteTask(View view){
+        View parent = (View)view.getParent();
+        TextView taskTextView = (TextView)parent.findViewById(R.id.task_title);
+        Log.e("String", (String) taskTextView.getText());
+        String task = String.valueOf(taskTextView.getText());
+        dbHelper.deleteTask(task);
+        loadTaskList();
     }
 }
