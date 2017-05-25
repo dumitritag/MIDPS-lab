@@ -18,8 +18,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import com.example.ourapp.DbHelper.DbHelper;
-
 public class MainActivity extends AppCompatActivity {
 
     DbHelper dbHelper;
