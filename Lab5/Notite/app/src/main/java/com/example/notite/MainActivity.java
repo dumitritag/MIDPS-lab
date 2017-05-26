@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                                 loadTaskList();
                             }
                         })
-                        .setNegativeButton("Cancel",null)
+                        .setNegativeButton("Anuleaza",null)
                         .create();
                 dialog.show();
                 return true;
